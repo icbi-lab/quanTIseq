@@ -1,0 +1,47 @@
+transcriptexpression <- function(inputfile, outputpath, threads, preproc, preprocpath){
+  
+  input <- as.matrix(read.table(inputfile))
+  
+  for (i in 1:nrow(input)){
+    
+    # check if single or paired end:
+    if (input[i,3] == "None"){
+      libtype = "--single -l 50 -s 20"
+      
+      # check if preprocessing with trimmomatic was performed:
+      if (preproc){
+        files = paste0(preprocpath, basename(input[i,2]))
+      }
+      else files = paste0("/home/Input/", basename(input[i,2]))
+    }
+    
+    else{
+      libtype = ""
+      
+      #check if preprocessing with trimmomatic was performed:
+      if (preproc){
+        files = paste0(preprocpath, basename(input[i,2]), " ", preprocpath, basename(input[i,3]))
+      }
+      else files = paste0("/home/Input/", basename(input[i,2]), " /home/Input/", basename(input[i,3]))
+    }
+    
+    opath = paste0(outputpath, input[i,1])
+    # Run kallisto:
+    system(paste("/home/kallisto/kallisto quant -i /home/kallisto/hg19_M_rCRS_kallisto.idx -o ", opath," ", libtype, "-t ", threads," ", files))
+    
+    # move tsv-file to output directory and delete the other directories:
+    system(paste0("mv ", opath, "/abundance.tsv ", outputpath, "/", input[i,1], ".tsv"))
+    system(paste("rm -r", opath))
+  }
+  
+}
+
+args <- commandArgs(TRUE)
+
+inputfile <- args[1]
+outputpath <- args[2]
+threads <- args[3]
+preproc <- args[4]
+preprocpath <- args[5]
+
+transcriptexpression(inputfile, outputpath, threads, preproc, preprocpath)
