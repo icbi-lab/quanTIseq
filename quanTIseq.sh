@@ -36,9 +36,7 @@ if [ $pipelinestart == "preproc" ]; then
 
   Rscript /home/trimmomatic/quanTIseq_preproc.R $inputfile $preprocpath $nthreads $phred $adapters $adapterSeed $palindromeClip $simpleClip $trimLead $trimTrail $minlen $crop
   
-  if [ -f ${preprocpath}*nopair ]; then
-    rm ${preprocpath}*nopair
-  fi
+  rm -f ${preprocpath}*nopair
      
   pipelinestart="expr"
   preproc="TRUE"
