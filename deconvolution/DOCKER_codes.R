@@ -132,7 +132,7 @@ quanTIseq<-function(currsig, currmix, scaling, method) {
     
   }
   
-  if (nrow(results)!=ncol(currmix)) results<-t(results)
+  if (!identical(rownames(results),colnames(myDCdata$mixture))) results<-t(results)
   
   return(results)
   
