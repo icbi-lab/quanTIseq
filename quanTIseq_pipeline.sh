@@ -57,7 +57,7 @@ do
 	  inputfile|outputdir|totalcells|rmgenes)
 	    eval $param=$value
 	    ;;
-	  prefix|threads|pipelinestart|phred|adapterSeed|palindromeClip|simpleClip|trimLead|trimTrail|minLen|crop|rawcounts|arrays|tumor|mRNAscale|method)
+	  prefix|threads|pipelinestart|phred|adapterSeed|palindromeClip|simpleClip|trimLead|trimTrail|minLen|crop|rawcounts|arrays|tumor|mRNAscale|method|avgFragLen|sdFragLen)
 	    eval $param=$value
 	    docker_vars=""$docker_vars" -e "$param"="$value
 	    ;;
@@ -87,6 +87,20 @@ if [[ ! "$threads" =~ ^[+]?[0-9]+$ ]] && [ "$threads" != "" ]; then
   echo "ERROR: --threads ($threads) must be an integer!" >&2
   exit 1
 fi
+
+# check if number of fragment length is an interger
+if [[ ! "$avgFragLen" =~ ^[+]?[0-9]+$ ]] && [ "$avgFragLen" != "" ]; then
+  echo "ERROR: --avgFragLen ($avgFragLen) must be an integer!" >&2
+  exit 1
+fi
+
+
+# check if number of the standard deviation of the fragment length is an interger
+if [[ ! "$sdFragLen" =~ ^[+]?[0-9]+$ ]] && [ "$sdFragLen" != "" ]; then
+  echo "ERROR: --sdFragLen ($sdFragLen) must be an integer!" >&2
+  exit 1
+fi
+
 
 # output directory (default: current directory)
 if [ "$outputdir" == "" ]; then
@@ -223,6 +237,6 @@ fi
 docker_run=""$docker_run" -v "$outputdir":/home/user_output/ "$rmgenesfile" "$totalcells
 
 # define parameters as environment variables:
-docker_run=$docker_run" "$docker_vars" -e rmgenes="$rmgenes" chripla/test"
+docker_run=$docker_run" "$docker_vars" -e rmgenes="$rmgenes" icbi/quantiseq"
 
 $docker_run
