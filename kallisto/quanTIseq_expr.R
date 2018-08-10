@@ -1,4 +1,4 @@
-transcriptexpression <- function(inputfile, outputpath, threads, preproc, preprocpath){
+transcriptexpression <- function(inputfile, outputpath, threads, preproc, preprocpath, avgFragLen, sdFragLen){
   
   input <- as.matrix(read.table(inputfile))
   
@@ -6,7 +6,7 @@ transcriptexpression <- function(inputfile, outputpath, threads, preproc, prepro
     
     # check if single or paired end:
     if (input[i,3] == "None"){
-      libtype = "--single -l 50 -s 20"
+      libtype = paste0("--single -l ", avgFragLen," -s ", sdFragLen)
       
       # check if preprocessing with trimmomatic was performed:
       if (preproc){
@@ -43,5 +43,7 @@ outputpath <- args[2]
 threads <- args[3]
 preproc <- args[4]
 preprocpath <- args[5]
+avgFragLen <- args[6]
+sdFragLen <- args[7]
 
-transcriptexpression(inputfile, outputpath, threads, preproc, preprocpath)
+transcriptexpression(inputfile, outputpath, threads, preproc, preprocpath, avgFragLen, sdFragLen)
