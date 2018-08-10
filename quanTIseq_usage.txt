@@ -71,6 +71,12 @@ Usage:
 					maximum length by removing bases at the end of the read. 
 					Default: 10000.
 
+	--avgFragLen:		estimated average fragment length required by Kallisto for single-end data.
+				Deafult: 50.
+
+	--sdFragLen:		estimated standard deviation of fragment length required by Kallisto for single-end data.
+				Default: 20.
+
 	--rawcounts: 	specifies whether a file of gene raw counts must be generated in addition to TPM. 
 					Default: FALSE.
 
