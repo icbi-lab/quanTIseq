@@ -52,7 +52,7 @@ exprpath="/home/Output/out_expr/"
 if [ $pipelinestart == "expr" ]; then
 
   # Run kallisto:
-  Rscript /home/kallisto/quanTIseq_expr.R $inputfile $exprpath $nthreads $preproc $preprocpath
+  Rscript /home/kallisto/quanTIseq_expr.R $inputfile $exprpath $nthreads $preproc $preprocpath $avgFragLen $sdFragLen
   # Map transcripts to human gene symbols:
   Rscript /home/kallisto/mapTranscripts.R $exprpath "${exprpath}${prefix}"
   rm ${exprpath}*.tsv
