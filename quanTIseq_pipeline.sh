@@ -64,7 +64,7 @@ case $container in
     # get docker image and create new singularity image:
     if [ ! -e ./quantiseq2.img ]; then
     echo "Building quantiseq singularity image"
-    singularity build quantiseq2.img docker://icbi/quantiseq2-dev
+    singularity build quantiseq2.img docker://icbi/quantiseq2
     fi
     singularity_vars=""
     singularity_run="singularity run"
