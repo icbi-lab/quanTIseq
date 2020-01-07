@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t quantiseq:latest .
+  - docker build -t icbi/quantiseq:latest .
 
 script:
   - echo "No testing for now. "
