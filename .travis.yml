@@ -6,8 +6,8 @@ services:
 before_install:
   - docker build -t quantiseq:latest .
 
-# script:
-  # - test/run_quantiseq.sh
+script:
+  - echo "No testing for now. "
 
 deploy:
   provider: script
