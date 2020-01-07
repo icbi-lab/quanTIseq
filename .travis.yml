@@ -6,10 +6,8 @@ services:
 before_install:
   - docker build -t quantiseq:latest .
 
-script:
-  - test/run_quantiseq.sh
-
-
+# script:
+  # - test/run_quantiseq.sh
 
 deploy:
   provider: script
