@@ -1,4 +1,4 @@
-FROM centos7
+FROM centos:7
 
 LABEL maintainer="christina.plattner@i-med.ac.at,francesca.finotello@i-med.ac.at,dietmar.rieder@i-med.ac.at"
 
