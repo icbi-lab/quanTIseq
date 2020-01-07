@@ -1,5 +1,5 @@
-FROM centos
- 
+FROM centos7
+
 LABEL maintainer="christina.plattner@i-med.ac.at,francesca.finotello@i-med.ac.at,dietmar.rieder@i-med.ac.at"
 
 RUN yum clean all && yum -y update
@@ -32,5 +32,5 @@ ADD quantiseq /opt/quantiseq
 #Clean up
 RUN rm -rf /tmp/* /var/tmp/* ~/.cache/*
 
-# entrypoint 
+# entrypoint
 ENTRYPOINT ["/opt/quantiseq/quanTIseq.sh"]
