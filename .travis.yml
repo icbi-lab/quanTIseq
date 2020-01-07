@@ -1,0 +1,18 @@
+language: c
+
+services:
+  - docker
+
+before_install:
+  - docker build -t quantiseq:latest
+
+script:
+ - test/run_quantiseq.sh
+
+
+
+deploy:
+  provider: script
+  script: bash .travis/docker_push.sh
+  on:
+    branch: master
