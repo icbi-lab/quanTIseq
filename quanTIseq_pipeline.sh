@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -eo pipefail
 ## Copyright (c) 2017, Division of Bioinformatics, Innsbruck Medical University
 ## All rights reserved.
 ##
