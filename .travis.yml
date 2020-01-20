@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - wget https://github.com/icbi-lab/quanTIseq/releases/download/v2.0.0/hg19_M_rCRS_kallisto.idx -o quantiseq/kallisto/
+  - wget https://github.com/icbi-lab/quanTIseq/releases/download/v2.0.0/hg19_M_rCRS_kallisto.idx -O quantiseq/kallisto/hg19_M_rCRS_kallisto.idx
   - docker build -t icbi/quantiseq2:latest .
 
 script:
