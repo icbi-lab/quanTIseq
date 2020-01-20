@@ -155,7 +155,7 @@ results<-results/apply(results,1,sum)
 # Save results using user's output ID
 fileout<-paste0(output, prefix, "_cell_fractions.txt")
 DCres <- results
-results<-cbind(colnames(mix.mat), results)
+results<-cbind(rownames(results), results)
 colnames(results)[1]<-"Sample"
 write.table(results, 
             sep="\t",
