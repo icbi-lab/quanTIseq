@@ -1,0 +1,2 @@
+sample0	test/Input/rnaseq_sample_1.fastq.gz	test/Input/rnaseq_sample_2.fastq.gz
+sample1	test/Input/rnaseq_sample_3.fastq.gz	None

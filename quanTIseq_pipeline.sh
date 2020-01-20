@@ -20,10 +20,10 @@ RUNGID=`id -g`
 UNAME=`uname` 
 
 # check OS to define if the pipeline will be run in Docker or Singularity:
-if [ $UNAME == "Linux" ]; then
+if [ $UNAME == "Linux" ] && [ -z $FORCE_DOCKER ]; then
     container="s"
     echo "Starting quanTIseq pipeline with Singularity"
-elif [ $UNAME == "Darwin" ]; then
+else
     container="d"
     echo "Starting quanTIseq pipeline with Docker"
 fi
