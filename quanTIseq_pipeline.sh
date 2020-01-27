@@ -67,7 +67,7 @@ case $container in
     singularity build quantiseq2.img docker://icbi/quantiseq2
     fi
     singularity_vars=""
-    singularity_run="singularity run"
+    singularity_run="singularity run --no-home"
     bindMount="-B"
     ;;
 esac
