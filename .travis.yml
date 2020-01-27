@@ -8,6 +8,7 @@ before_install:
   - docker build -t icbi/quantiseq2:latest .
 
 script:
+  - FORCE_DOCKER=1 ./quanTIseq_pipeline.sh --outputdir=/tmp  --inputfile=test/rnaSeqInfoFile_singlesample.txt
   - FORCE_DOCKER=1 ./quanTIseq_pipeline.sh --outputdir=/tmp  --inputfile=test/rnaSeqInfoFile.txt
 
 
