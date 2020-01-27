@@ -8,8 +8,12 @@ before_install:
   - docker build -t icbi/quantiseq2:latest .
 
 script:
-  - FORCE_DOCKER=1 ./quanTIseq_pipeline.sh --outputdir=/tmp  --inputfile=test/rnaSeqInfoFile_singlesample.txt
+  - FORCE_DOCKER=1 ./quanTIseq_pipeline.sh --outputdir=/tmp  --inputfile=test/rnaSeqInfoFile_singlesample.txt --prefix=ss
+  - diff test/Output_testfiles/ss_cell_fractions.txt /tmp/ss_cell_fractions.txt
+  - diff test/Output_testfiles/ss_gene_tpm.txt /tmp/ss_gene_tpm.txt
   - FORCE_DOCKER=1 ./quanTIseq_pipeline.sh --outputdir=/tmp  --inputfile=test/rnaSeqInfoFile.txt
+  - diff test/Output_testfiles/quanTIseq_cell_fractions.txt /tmp/quanTIseq_cell_fractions.txt
+  - diff test/Output_testfiles/quanTIseq_gene_tpm.txt /tmp/quanTIseq_gene_tpm.txt
 
 
 deploy:
