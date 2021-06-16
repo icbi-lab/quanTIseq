@@ -46,8 +46,7 @@ if (signame %in% listsig) {
                       paste0(signame,"_rmgenes.txt"))
     
   } else if (rmgenes=="path") {
-    filerm<-file.path("/opt/quantiseq/deconvolution/",
-                      paste0(signame,"rmgenes.txt"))
+    filerm<-"/opt/quantiseq/deconvolution/rmgenes.txt"
     
   }
 
